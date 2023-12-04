@@ -10,16 +10,22 @@ class Owner(db.Model):
     email = db.Column(db.String(45), nullable=False)
     contact_number = db.Column(db.String(45), nullable=False)
 
+    owner_places = db.relationship("PlaceOwner", backref="owner")
+
     def __repr__(self) -> str:
         return f"Owner(id={self.id}, first_name='{self.first_name}', last_name='{self.last_name}', email='{self.email}', contact_number='{self.contact_number}')"
 
     def put_into_dto(self) -> Dict[str, Any]:
+        places_info = [{"name": place_owner_pair.place.name,
+                      "description": place_owner_pair.place.description
+                      } for place_owner_pair in self.owner_places]
         return {
             'id': self.id,
             'first_name': self.first_name,
             'last_name': self.last_name,
             'email': self.email,
-            'contact_number': self.contact_number
+            'contact_number': self.contact_number,
+            "places_info": places_info
         }
 
     @staticmethod

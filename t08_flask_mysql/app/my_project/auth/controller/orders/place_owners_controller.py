@@ -6,3 +6,7 @@ class PlaceOwnersController(GeneralController):
     Realization of Place Owners controller.
     """
     _service = place_owners_service
+
+    def insert_new_place_owner_pair(self, place_id, owner_id):
+        result = self._service.insert_new_place_owner_pair(place_id, owner_id)
+        return result

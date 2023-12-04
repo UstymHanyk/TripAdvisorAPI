@@ -9,7 +9,7 @@ class Amenity(db.Model):
     name = db.Column(db.String(45), nullable=False)
     description = db.Column(db.TEXT, nullable=True)
 
-    places = db.relationship('PlaceAmenity', cascade='all, delete-orphan')
+    amenity_places = db.relationship("PlaceAmenity", backref="amenity")
 
     def __repr__(self) -> str:
         return f"Amenity(id={self.id}, name='{self.name}', description='{self.description}')"
@@ -24,10 +24,10 @@ class Amenity(db.Model):
     @staticmethod
     def create_from_dto(place_dict: Dict[str, Any]) :
         if 'id' in place_dict:
-            return Media(
+            return Amenity(
                 **place_dict
             )
         else:
-            return Media(
+            return Amenity(
                 **{k: v for k, v in place_dict.items() if k != 'id'}
             )

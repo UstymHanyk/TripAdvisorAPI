@@ -6,6 +6,7 @@ from .orders.place_amenities_service import PlaceAmenityService
 from .orders.amenities_service import AmenityService
 from .orders.ratings_service import RatingsService
 from .orders.reviews_service import ReviewsService
+from .orders.payment_options_service import PaymentOptionsService
 from .orders.users_service import UsersService
 from .orders.user_details_service import UserDetailsService
 
@@ -18,5 +19,6 @@ place_amenities_service = PlaceAmenityService()
 amenities_service = AmenityService()
 ratings_service = RatingsService()
 reviews_service = ReviewsService()
+payment_options_service = PaymentOptionsService()
 users_service = UsersService()
 user_details_service = UserDetailsService()

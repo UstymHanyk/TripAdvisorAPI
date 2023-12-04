@@ -4,6 +4,12 @@ from t08_flask_mysql.app.my_project.auth.controller import place_amenity_control
 
 place_amenity_bp = Blueprint('place_amenity', __name__, url_prefix='/place-amenities')
 
+
+@place_amenity_bp.get('')
+def get_all() -> Response:
+    place_owners = place_amenity_controller.find_all()
+    return make_response(jsonify(place_owners), HTTPStatus.OK)
+
 @place_amenity_bp.post('/<int:place_id>/amenities/<int:amenity_id>')
 def add_amenity_to_place(place_id: int, amenity_id: int) -> Response:
     success = place_amenity_controller.add_amenity_to_place(place_id, amenity_id)

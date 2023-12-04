@@ -7,7 +7,7 @@ from .orders.amenities_controller import AmenitiesController
 from .orders.ratings_controller import RatingsController
 from .orders.reviews_controller import ReviewsController
 from .orders.users_controller import UsersController
-from .orders.user_details_controller import UserDetailsController
+from .orders.payment_options_controller import PaymentOptionsController
 
 media_controller = MediaController()
 owners_controller = OwnersController()
@@ -18,4 +18,4 @@ amenities_controller = AmenitiesController()
 ratings_controller = RatingsController()
 reviews_controller = ReviewsController()
 users_controller = UsersController()
-user_details_controller = UserDetailsController()
+payment_options_controller = PaymentOptionsController()

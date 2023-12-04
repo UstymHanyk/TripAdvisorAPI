@@ -10,10 +10,6 @@ def get_all_media() -> Response:
     media = media_controller.find_all()
     return make_response(jsonify(media), HTTPStatus.OK)
 
-@media_bp.get('/place/<int:place_id>')
-def get_media_by_place(place_id: int) -> Response:
-    media = media_controller.find_by_place_id(place_id)
-    return make_response(jsonify(media), HTTPStatus.OK)
 
 @media_bp.post('')
 def create_media() -> Response:
@@ -46,3 +42,20 @@ def patch_media(media_id: int) -> Response:
 def delete_media(media_id: int) -> Response:
     media_controller.delete(media_id)
     return make_response("Media deleted", HTTPStatus.OK)
+
+
+@media_bp.post('/insert10')
+def insert_10_new_media() -> Response:
+    result = media_controller.insert_10_new_media()
+    return make_response(jsonify({'message': result}), HTTPStatus.OK)
+
+@media_bp.post('/insert_parametrized')
+def insert_new_media_parametrized() -> Response:
+    content = request.get_json()
+    review_id = content.get('review_id')
+    media_type = content.get('type')
+    media_url = content.get('url')
+    upload_date = content.get('upload_date')
+
+    result = media_controller.insert_new_media_parametrized(review_id, media_type, media_url, upload_date)
+    return make_response(jsonify({'message': result}), HTTPStatus.OK)

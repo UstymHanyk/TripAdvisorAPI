@@ -6,3 +6,6 @@ class RatingsController(GeneralController):
     Realization of Ratings controller.
     """
     _service = ratings_service
+    def get_average_review_rating(self):
+        result = self._service.get_average_review_rating()
+        return result

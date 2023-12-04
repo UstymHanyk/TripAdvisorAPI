@@ -8,6 +8,7 @@ from .orders.place_amenities_dao import PlaceAmenityDAO
 from .orders.amenities_dao import AmenityDAO
 from .orders.ratings_dao import RatingDAO
 from .orders.reviews_dao import ReviewDAO
+from .orders.payment_options_dao import PaymentOptionsDAO
 
 users_dao = UserDAO()
 user_details_dao = UserDetailsDAO()
@@ -19,3 +20,4 @@ place_amenities_dao = PlaceAmenityDAO()
 amenities_dao = AmenityDAO()
 ratings_dao = RatingDAO()
 reviews_dao = ReviewDAO()
+payment_options_dao = PaymentOptionsDAO()

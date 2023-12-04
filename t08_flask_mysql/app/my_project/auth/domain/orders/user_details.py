@@ -4,7 +4,7 @@ from t08_flask_mysql.app.my_project import db
 class UserDetails(db.Model):
     __tablename__ = "user_details"
 
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), unique=True, primary_key=True)
     first_name = db.Column(db.String(45), nullable=True, default=None)
     last_name = db.Column(db.String(45), nullable=True, default=None)
     date_of_birth = db.Column(db.Date, nullable=True, default=None)

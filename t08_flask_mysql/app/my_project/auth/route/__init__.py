@@ -16,6 +16,7 @@ def register_routes(app: Flask) -> None:
     from .orders.ratings_route import ratings_bp
     from .orders.reviews_route import reviews_bp
     from .orders.users_route import users_bp
+    from .orders.payment_options_route import payment_options_bp
 
     app.register_blueprint(media_bp)
     app.register_blueprint(owners_bp)
@@ -26,3 +27,5 @@ def register_routes(app: Flask) -> None:
     app.register_blueprint(ratings_bp)
     app.register_blueprint(reviews_bp)
     app.register_blueprint(users_bp)
+
+    app.register_blueprint(payment_options_bp)

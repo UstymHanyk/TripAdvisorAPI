@@ -6,15 +6,13 @@ class Review(db.Model):
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id', ondelete='CASCADE'), nullable=False)
-    details = db.relationship('User', backref='users')
-
-
     place_id = db.Column(db.Integer, db.ForeignKey('places.id', ondelete='CASCADE'), nullable=False)
-    reviews = db.relationship('Place', backref='places')
 
     text = db.Column(db.String(100))
     date = db.Column(db.Date)
     rating = db.Column(db.Float)
+
+    review_media = db.relationship('Media', backref='review')
 
     def __repr__(self) -> str:
         return f"Review(id={self.id}, user_id={self.user_id}, place_id={self.place_id}, text='{self.text}', " \

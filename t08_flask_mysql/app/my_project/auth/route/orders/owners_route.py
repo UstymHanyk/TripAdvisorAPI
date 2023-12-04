@@ -7,7 +7,6 @@ owners_bp = Blueprint('owners', __name__, url_prefix='/owners')
 
 @owners_bp.get('')
 def get_all_owners() -> Response:
-    print("finding owners")
     owners = owners_controller.find_all()
     return make_response(jsonify(owners), HTTPStatus.OK)
 
@@ -42,3 +41,7 @@ def patch_owner(owner_id: int) -> Response:
 def delete_owner(owner_id: int) -> Response:
     owners_controller.delete(owner_id)
     return make_response("Owner deleted", HTTPStatus.OK)
+@owners_bp.post('/create10')
+def create_10_tables() -> Response:
+    result = owners_controller.create_10_timestampt_tables()
+    return make_response(jsonify({'message': result}), HTTPStatus.OK)

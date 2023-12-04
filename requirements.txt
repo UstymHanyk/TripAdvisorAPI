@@ -6,3 +6,11 @@ waitress~=2.1.2
 setuptools~=68.2.0
 flask~=3.0.0
 SQLAlchemy~=2.0.23
+flask
+waitress
+flask-sqlalchemy
+mysqlclient
+sqlalchemy-utils
+jinja2
+jsonify
+flask-restx

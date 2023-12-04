@@ -14,11 +14,19 @@ class Place(db.Model):
     category = db.Column(db.String(45), nullable=True)
     working_hours = db.Column(db.String(45), nullable=True)
 
+    place_owners = db.relationship("PlaceOwner", backref="place")
+    place_amenities = db.relationship("PlaceAmenity", backref="place")
+
+    place_ratings = db.relationship("Rating", backref="place")
+    place_reviews = db.relationship("Review", backref="place")
 
     def __repr__(self) -> str:
         return f"Place(id={self.id}, name='{self.name}', city='{self.city}', country='{self.country}', latitude={self.latitude}, longitude={self.longitude}, description='{self.description}', category='{self.category}', working_hours='{self.working_hours}')"
 
     def put_into_dto(self) -> Dict[str, Any]:
+        owners_info = [{"first_name": place_owner_pair.owner.first_name,
+                      "last_name": place_owner_pair.owner.last_name
+                      } for place_owner_pair in self.place_owners]
         return {
             'id': self.id,
             'name': self.name,
@@ -28,7 +36,8 @@ class Place(db.Model):
             'longitude': float(self.longitude) if self.longitude is not None else None,
             'description': self.description,
             'category': self.category,
-            'working_hours': self.working_hours
+            'working_hours': self.working_hours,
+            "owners_info":owners_info
         }
 
     @staticmethod

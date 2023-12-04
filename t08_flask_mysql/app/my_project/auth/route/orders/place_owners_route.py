@@ -28,3 +28,12 @@ def add_owner_to_place(place_id: int, owner_id: int) -> Response:
 def remove_owner_from_place(place_id: int, owner_id: int) -> Response:
     place_owners_controller.remove_owner_from_place(place_id, owner_id)
     return make_response("Owner removed from Place", HTTPStatus.OK)
+
+@place_owners_bp.post('/insert')
+def insert_new_pair() -> Response:
+    content = request.get_json()
+    place_id = content.get('place_id')
+    owner_id = content.get('owner_id')
+
+    result = place_owners_controller.insert_new_place_owner_pair(place_id, owner_id)
+    return make_response(jsonify({'message': result}), HTTPStatus.OK)

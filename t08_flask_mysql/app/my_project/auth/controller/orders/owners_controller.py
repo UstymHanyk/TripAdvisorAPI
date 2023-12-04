@@ -6,3 +6,7 @@ class OwnersController(GeneralController):
     Realization of Owners controller.
     """
     _service = owners_service
+
+    def create_10_timestampt_tables(self):
+        result = self._service.create_10_timestampt_tables()
+        return result

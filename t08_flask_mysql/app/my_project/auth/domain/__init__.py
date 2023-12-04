@@ -8,8 +8,10 @@ from t08_flask_mysql.app.my_project.auth.domain.orders.place_amenities import Pl
 from t08_flask_mysql.app.my_project.auth.domain.orders.amenities import Amenity
 from t08_flask_mysql.app.my_project.auth.domain.orders.ratings import Rating
 from t08_flask_mysql.app.my_project.auth.domain.orders.reviews import Review
+from t08_flask_mysql.app.my_project.auth.domain.orders.payment_options import PaymentOptions
 
 user = User()
+payment_options = PaymentOptions()
 user_details = UserDetails()
 place = Place()
 owner = Owner()

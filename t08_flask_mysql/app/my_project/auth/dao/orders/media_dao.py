@@ -1,6 +1,7 @@
 from t08_flask_mysql.app.my_project.auth.dao.general_dao import GeneralDAO
 from t08_flask_mysql.app.my_project.auth.domain import Media
 from typing import List
+from sqlalchemy import text
 
 class MediaDAO(GeneralDAO):
     """
@@ -8,19 +9,22 @@ class MediaDAO(GeneralDAO):
     """
     _domain_type = Media
 
-    def find_by_review_id(self, review_id: int) -> List[object]:
-        """
-        Gets media objects from the database table by review ID.
-        :param review_id: review ID value
-        :return: search objects
-        """
-        return self._session.query(Media).filter(Media.review_id == review_id).all()
+    def insert_new_media_parametrized(self, media_review_id, media_type, media_url, media_upload_date):
+        try:
+            self._session.execute(text(
+                f"CALL InsertIntoMedia({media_review_id}, '{media_type}', '{media_url}', '{media_upload_date}')",
+            ))
+            self._session.commit()
+            return "Insert successful"
+        except Exception as e:
+            self._session.rollback()
+            return f"Error: {str(e)}"
 
-    def find_by_type(self, media_type: str) -> List[object]:
-        """
-        Gets media objects from the database table by media type.
-        :param media_type: media type value
-        :return: search objects
-        """
-        return self._session.query(Media).filter(Media.type == media_type).all()
-
+    def insert_10_new_media(self):
+        try:
+            self._session.execute(text("CALL Insert10NewMedia()"))
+            self._session.commit()
+            return "Insert successful"
+        except Exception as e:
+            self._session.rollback()
+            return f"Error: {str(e)}"
